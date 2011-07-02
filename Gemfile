@@ -5,6 +5,8 @@ gem 'rails', '3.0.9'
 gem 'sqlite3'
 gem 'haml-rails'
 
+gem 'uuidtools'
+
 group :test, :development do 
   gem 'rspec-rails', '~> 2.5'
 end
