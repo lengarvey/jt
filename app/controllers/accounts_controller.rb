@@ -1,4 +1,10 @@
 class AccountsController < ApplicationController
+  before_filter :load_account, :except => [:index, :create, :signup_with_uuid]
+  
+  def load_account
+    @account = Account.find(params[:id])
+  end
+  
   def index
     @account = Account.new
   end
@@ -19,12 +25,26 @@ class AccountsController < ApplicationController
   end
 
   def update
-    @account = Account.find(params[:id])
-    @account.update_attributes(params[:account])
+    if params[:account][:flash]
+      flash_array = []
+      flash_array << ["Password updated"] if params[:account][:password].length > 0 
+      flash_array << ["First name updated"] unless params[:account][:first_name] == @account.first_name
+      flash_array << ["Last name updated"] unless params[:account][:last_name] == @account.last_name
+      flash_array << ["Location updated"] unless params[:account][:location] == @account.location 
+      flash_array << ["Birth date updated"] unless params[:account][:birth_date] == @account.birth_date.to_s
+      flash[:notice] = flash_array.join("<br/>") if flash_array.count > 0
+    end
+
+    if not @account.update_attributes(params[:account])
+      flash[:notice] = nil
+    end
     redirect_to account_path(@account)
   end
 
   def show
-    @account = Account.find(params[:id])
+  end
+
+  def edit
+      
   end
 end

@@ -9,8 +9,11 @@ class JobsController < ApplicationController
 
   def create
     @job = @account.jobs.build
-    @job.update_attributes(params[:job])
-    redirect_to @account
+    if @job.update_attributes(params[:job])
+      redirect_to @account
+    else
+      render 'accounts/show'
+    end
   end
   def destroy
     Job.find_by_id(params[:id]).destroy 

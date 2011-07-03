@@ -1,9 +1,12 @@
 %h1
   Welcome
-  = @account.first_name + " " + @account.last_name
+  = @account.first_name + " " + @account.last_name 
+  (
+  = @account.email
+  )
+
 %h3 Add further details
 = link_to "Manage account", edit_account_path(@account)   
-%h2= @account.email
 .jobs
   - @account.jobs.each do |job|
     %p
