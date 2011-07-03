@@ -6,6 +6,7 @@ This is a simple example Rails3 (not 3.1) app.
 The basic concept is that users can sign up and enter up to 7 previous "jobs". As you might be able to tell the data models are rather skeletal, but the app shows the basic workflow and is mostly a complete rails app.
 
 The signup workflow is slightly more complicated:
+
 1. A user enters their email address and a unique link is emailed to the provided address.
 2. This unique link, when followed, leads to a form where First Name, Last Name and account Password can be entered.
 3. Upon submitting this form another is presented where the user can enter Birth Date, and Location. Also on this page the user can add or remove the aforementioned 7 jobs.
