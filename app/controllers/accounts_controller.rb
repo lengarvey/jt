@@ -10,7 +10,7 @@ class AccountsController < ApplicationController
       AccountMailer.request_activation(@account).deliver
       redirect_to :root
     else
-      redirect_to :root
+      render :index
     end
   end
 

@@ -32,3 +32,8 @@ When /^I fill in first name, last name and my password$/ do
     fill_in("account_password", :with => "testpasswd1")
     fill_in("account_password_confirmation", :with => "testpasswd1")
 end
+
+When /^I fill in "([^"]*)" with an invalid address$/ do |field|
+  @invalidemail = "invalidemail.com"
+  fill_in(field, :with => @email)
+end

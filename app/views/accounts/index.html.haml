@@ -1,3 +1,11 @@
+- if @account.errors.any?
+  %div#errorExplanation
+    %h2
+      = pluralize(@account.errors.count, "error")
+      prohibited this record from being saved:
+    %ul
+      - @account.errors.full_messages.each do |msg|
+        %li= msg
 = form_for @account do |f|
   = f.label :email
   = f.text_field :email
