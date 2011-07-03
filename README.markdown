@@ -5,6 +5,13 @@ This is a simple example Rails3 (not 3.1) app.
 
 The basic concept is that users can sign up and enter up to 7 previous "jobs". As you might be able to tell the data models are rather skeletal, but the app shows the basic workflow and is mostly a complete rails app.
 
+The signup workflow is slightly more complicated:
+1. A user enters their email address and a unique link is emailed to the provided address.
+2. This unique link, when followed, leads to a form where First Name, Last Name and account Password can be entered.
+3. Upon submitting this form another is presented where the user can enter Birth Date, and Location. Also on this page the user can add or remove the aforementioned 7 jobs.
+
+The whole app was built in BDD style using Cucumber.
+
 How to run
 ----------
 
@@ -63,3 +70,10 @@ To run tests
 ```
 rake cucumber
 ```
+
+Things I would probably refactor given time
+-------------------------------------------
+The authorization code is a little clunky.
+The intial email signup shouldn't be an "account" type but should probably be a "account_lead" or something similar. This way it would make putting validations on the presense of password, first_name and last_name easier. Right now it's a little trickier so hasn't been done.
+Cucumber was used exclusively so all tests are integration tests. This is great for a "simple" application, but probably should be expanded to use Rpsec or testunit for more targetted unit tests.
+Emailing isn't really well set up, short of using a personal gmail or email account there isn't a great way around this. An email server isn't as easy to embed on a devs laptop as a database.
