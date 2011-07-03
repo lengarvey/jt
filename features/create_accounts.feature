@@ -14,6 +14,9 @@ Background:
     When I fill in first name, last name and my password
     And I press the Submit button
     Then I should see "Add further details"
+    When I fill in location and date of birth
+    And I press the Submit button
+    Then I should see that my location and birth date are updated 
 
   Scenario: Submit an invalid email
     When I fill in "Email" with an invalid address
