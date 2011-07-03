@@ -6,6 +6,7 @@ gem 'sqlite3'
 gem 'haml-rails'
 
 gem 'uuidtools'
+gem "bcrypt-ruby", :require => "bcrypt"
 
 group :test, :development do 
   gem 'rspec-rails', '~> 2.5'

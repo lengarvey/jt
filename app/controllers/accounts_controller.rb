@@ -15,6 +15,12 @@ class AccountsController < ApplicationController
   end
 
   def signup_with_uuid 
-    render
+    @account = ActivationLink.find_by_uuid(params[:uuid]).account
+  end
+
+  def update
+    @account = Account.find(params[:id])
+    @account.update_attributes(params[:account])
+    render :add_jobs
   end
 end

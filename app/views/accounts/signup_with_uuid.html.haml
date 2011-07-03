@@ -1,0 +1,19 @@
+%h1 
+  Continue your signup for
+  = @account.email
+= form_for @account do |f|
+  %p
+    = f.label :first_name
+    = f.text_field :first_name
+  %p
+    = f.label :last_name
+    = f.text_field :last_name
+  %p
+    = f.label :password
+    = f.password_field :password
+  %p
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+  %p= f.submit "Submit"
+
+

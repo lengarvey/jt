@@ -18,6 +18,17 @@ Then /^I should receive an email confirmation which contains the activation url$
   
   # could mock ActivationLink or the db, but don't really have time.
   account = Account.find_by_email(@email)
-  link = account.activation_links.first
-  @mail.body.should include(link.uuid)
+  @link = account.activation_links.first
+  @mail.body.should include(@link.uuid)
+end
+
+Given /^the activation url$/ do
+ visit account_by_uuid_path(@link.uuid) 
+end
+
+When /^I fill in first name, last name and my password$/ do
+    fill_in("account_first_name", :with => "John")
+    fill_in("account_last_name", :with => "Smith")
+    fill_in("account_password", :with => "testpasswd1")
+    fill_in("account_password_confirmation", :with => "testpasswd1")
 end
