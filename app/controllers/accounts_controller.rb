@@ -21,6 +21,10 @@ class AccountsController < ApplicationController
   def update
     @account = Account.find(params[:id])
     @account.update_attributes(params[:account])
-    render :add_jobs
+    redirect_to account_path(@account)
+  end
+
+  def show
+    @account = Account.find(params[:id])
   end
 end

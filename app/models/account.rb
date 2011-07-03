@@ -1,7 +1,7 @@
 class Account < ActiveRecord::Base
   has_many :activation_links
+  has_many :jobs
 
-  attr_accessible :email, :password, :password_confirmation
   attr_accessor :password
 
   validates_confirmation_of :password

@@ -1,0 +1,9 @@
+%h1 Enter Job Details
+= form_for [@account, job] do |f|
+  %p
+    = f.label :title
+    = f.text_field :title
+  %p
+    = f.label :company
+    = f.text_field :company
+  = f.submit "Add Job"
