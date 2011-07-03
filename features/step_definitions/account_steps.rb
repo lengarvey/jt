@@ -37,6 +37,15 @@ When /^I fill in "([^"]*)" with an invalid address$/ do |field|
   @invalidemail = "invalidemail.com"
   fill_in(field, :with => @email)
 end
+When /^I fill in location and date of birth$/ do
+  fill_in("account_location", :with => 'Sydney')
+  fill_in("account_birth_date", :with => '1980-01-01')
+end
+
+Then /^I should see that my location and birth date are updated$/ do
+  should_see page, "Location updated"
+  should_see page, "Birth date updated"
+end
 
 # Edit account below
 Given /^I'm on my edit account page$/ do

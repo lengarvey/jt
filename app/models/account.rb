@@ -3,6 +3,10 @@ class Account < ActiveRecord::Base
   has_many :jobs
 
   attr_accessor :password, :flash
+  def state
+    return :full if location or birth_date
+    return :partial
+  end
 
   validates_confirmation_of :password
   validates :email, :presence => true, 

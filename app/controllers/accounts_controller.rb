@@ -27,11 +27,11 @@ class AccountsController < ApplicationController
   def update
     if params[:account][:flash]
       flash_array = []
-      flash_array << ["Password updated"] if params[:account][:password].length > 0 
-      flash_array << ["First name updated"] unless params[:account][:first_name] == @account.first_name
-      flash_array << ["Last name updated"] unless params[:account][:last_name] == @account.last_name
-      flash_array << ["Location updated"] unless params[:account][:location] == @account.location 
-      flash_array << ["Birth date updated"] unless params[:account][:birth_date] == @account.birth_date.to_s
+      flash_array << ["Password updated"] if params[:account][:password] and params[:account][:password].length > 0 
+      flash_array << ["First name updated"] if params[:account][:first_name] and params[:account][:first_name] != @account.first_name
+      flash_array << ["Last name updated"] if params[:account][:last_name] and params[:account][:last_name] != @account.last_name
+      flash_array << ["Location updated"] if params[:account][:location] and params[:account][:location] != @account.location 
+      flash_array << ["Birth date updated"] if params[:account][:birth_date] and params[:account][:birth_date] != @account.birth_date.to_s
       flash[:notice] = flash_array.join("<br/>") if flash_array.count > 0
     end
 
