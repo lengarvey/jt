@@ -74,7 +74,9 @@ rake cucumber
 
 Things I would probably refactor given time
 -------------------------------------------
-The authorization code is a little clunky.
-The intial email signup shouldn't be an "account" type but should probably be a "account_lead" or something similar. This way it would make putting validations on the presense of password, first_name and last_name easier. Right now it's a little trickier so hasn't been done.
-Cucumber was used exclusively so all tests are integration tests. This is great for a "simple" application, but probably should be expanded to use Rpsec or testunit for more targetted unit tests.
-Emailing isn't really well set up, short of using a personal gmail or email account there isn't a great way around this. An email server isn't as easy to embed on a devs laptop as a database.
+
+- The authorization code is a little clunky. In a real system, I'd probably use Devise for authentication and something like cancan for authorization
+- The intial email signup shouldn't be an "account" type but should probably be a "account_lead" or something similar. This way it would make putting validations on the presense of password, first_name and last_name easier. Right now it's a little trickier so hasn't been done.
+- Cucumber was used exclusively so all tests are integration tests. This is great for a "simple" application, but probably should be expanded to use Rpsec or testunit for more targetted unit tests.
+- Emailing isn't really well set up, short of using a personal gmail or email account there isn't a great way around this. An email server isn't as easy to embed on a devs laptop as a database.
+- The unique links are not one-time use, nor do they expire.
