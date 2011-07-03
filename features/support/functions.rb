@@ -5,3 +5,12 @@ def should_see(page, text)
     assert page.has_content?(text)
   end
 end
+
+def log_in(email, password)
+  visit root_url
+  
+  fill_in("useremail", :with => email)
+  fill_in("password", :with => password)
+
+  click_button("Login")
+end

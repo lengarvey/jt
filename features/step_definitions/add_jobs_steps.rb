@@ -5,7 +5,7 @@ Given /^I'm on my account page$/ do
                             :first_name => 'John',
                             :last_name => 'Smith',
                             :password => 'passw0rd1')
-
+  log_in(@account.email, @account.password)
   visit account_path(@account)  
 end
 

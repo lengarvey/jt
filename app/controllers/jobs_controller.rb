@@ -1,8 +1,15 @@
 class JobsController < ApplicationController
-  before_filter :get_account
-  def get_account
-    @account = Account.find_by_id(params[:account_id])
+  before_filter :authorize
+
+  def load_account
+    @account = Account.find(params[:account_id])
   end
+
+  def authorize
+    load_account
+    redirect_to new_session_path, :notice => 'You need to log in' unless @account.id == session[:account_id]
+  end
+
   def new
     @job = @account.jobs.build
   end

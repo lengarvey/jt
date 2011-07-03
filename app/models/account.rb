@@ -28,4 +28,15 @@ class Account < ActiveRecord::Base
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
   end
+  
+  def self.authenticate(email, password)  
+    account = find_by_email(email)  
+    return account unless account.password_hash and account.password_salt
+    if account and account.password_hash == BCrypt::Engine.hash_secret(password, account.password_salt)  
+      account
+    else  
+      nil 
+    end  
+  end  
+
 end

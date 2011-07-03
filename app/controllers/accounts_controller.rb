@@ -1,9 +1,15 @@
 class AccountsController < ApplicationController
-  before_filter :load_account, :except => [:index, :create, :signup_with_uuid]
-  
+  before_filter :authorize , :except => [:index, :create, :signup_with_uuid]
+
   def load_account
     @account = Account.find(params[:id])
   end
+
+  def authorize
+    load_account
+    redirect_to new_session_path, :notice => 'You need to log in' unless @account.id == session[:account_id]
+  end
+  
   
   def index
     @account = Account.new
@@ -22,6 +28,7 @@ class AccountsController < ApplicationController
 
   def signup_with_uuid 
     @account = ActivationLink.find_by_uuid(params[:uuid]).account
+    session[:account_id] = @account.id
   end
 
   def update

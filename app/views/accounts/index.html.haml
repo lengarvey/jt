@@ -6,7 +6,11 @@
     %ul
       - @account.errors.full_messages.each do |msg|
         %li= msg
+%h1 New Account?
 = form_for @account do |f|
   = f.label :email
   = f.text_field :email
   = f.submit "Submit"
+%h1 Existing Account?
+= render 'sessions/form'
+
